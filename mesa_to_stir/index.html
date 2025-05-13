@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../assets/tardis-logo-2.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -649,9 +649,27 @@ To carry out a MESA simulation locally on your laptop, compile with <code>./mk</
 <h2 id="outputs-from-mesa">Outputs from MESA</h2>
 <p>MESA outputs include history and profile data (will appear in the <code>LOGS</code> directory in your <code>work</code> folder), photos for restarting the simulation, and images (optional). We include output files for our fiducial mesa methods. You should be able to reproduce this output by running the inlists as they appear in the inputs section. </p>
 <h2 id="inputs-to-stir">Inputs to STIR</h2>
+<p><code>STIR</code> takes as input a stellar model (density, temperature, radius, radial 
+velocity, ye, 1/Abar). <code>STIR</code> requires an input file <code>flash.par</code> which 
+configures, e.g., grid options such as radial extent and adaptive mesh 
+refinement levels and criteria. This is where the run base name (<code>basenm</code>), 
+model file, and output directory are set. To run <code>STIR</code>, navigate to 
+<code>obj_ccsn1dMLTnoHyb/run</code> and then <code>./stir -par_file inputs/stir.par</code> 
+(or, with MPI, e.g.m <code>mpirun -n 8 ./stir -par_file inputs/stir.par</code>).</p>
 <h2 id="conversion-from-mesa-to-stir">Conversion from MESA to STIR</h2>
-<p>To convert the MESA output to STIR input, ...</p>
+<p>To convert the MESA output to STIR input, we take a final MESA profile 
+at the onset of core-collapse (roughly 1000 km/s maximum infall) and 
+translate this into a form suitable for <code>STIR</code>.
+There is a script.... (#TODO)</p>
 <h2 id="outputs-from-stir">Outputs from STIR</h2>
+<p><code>STIR</code> outputs hydrodynamic and radiation radial profiles as a function of time
+in the <code>output</code> directory. These are HDF5 files. Quantities of interest might 
+include density, temperature, pressure, energies, ye, and velocity.
+<code>STIR</code> outputs integrated time series data in a <code>.dat</code> file prefixed with the 
+run <code>basenm</code> -- these are not in the <code>outputs</code> directory. The columns are 
+labeled and include quantities such as central density, diagnostic explosion 
+energy, mean shock radius, and mass accretion rate as a function of time.
+There is also a <code>.log</code> file which summarizes options for the current run.</p>
 
 
 
@@ -704,10 +722,10 @@ To carry out a MESA simulation locally on your laptop, compile with <code>./mk</
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
